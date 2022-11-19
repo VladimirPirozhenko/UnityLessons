@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class Health : MonoBehaviour, IDamageable
 {
-    [SerializeField] float maxHP;
-    [SerializeField] float hp;
+    [field: SerializeField] public float maxHP {  get; private set; }
+    [field: SerializeField] public float hp { get; private set; }
     public event Action OnOutOfHealth;
     public void TakeDamage(float damage)
     {
