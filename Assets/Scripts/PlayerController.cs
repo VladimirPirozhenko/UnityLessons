@@ -7,10 +7,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float speed;
 
     private Health health;
-
+    private Weapon weapon;
     private void Awake()
     {
         health = GetComponent<Health>();
+        weapon = GetComponent<Weapon>();    
     }
 
     private void OnEnable()
@@ -27,6 +28,7 @@ public class PlayerController : MonoBehaviour
     {
         Move();
         KeepInCameraView();
+        Shoot();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -45,6 +47,16 @@ public class PlayerController : MonoBehaviour
         posInViewport.x = Mathf.Clamp01(posInViewport.x);
         posInViewport.y = Mathf.Clamp01(posInViewport.y);
         transform.position = Camera.main.ViewportToWorldPoint(posInViewport);
+    }
+
+    public void Shoot()
+    {
+        if (!weapon)
+            return;
+        if (Input.GetKey(KeyCode.Space))
+            weapon.Shoot();
+        //bool canShoot = playerInput.ReadShootInput();
+       
     }
 
     void Move()

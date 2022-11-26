@@ -23,6 +23,8 @@ public class HealthBarView : MonoBehaviour
     public void ChangeHealthValue()
     {
         float healthPercentage = health.hp / health.maxHP;
+        if (healthPercentage == cachedFillAmount) 
+            return;   
         if (accumulation < 1)
         {
             accumulation += healthChangingSpeed * Time.deltaTime;
