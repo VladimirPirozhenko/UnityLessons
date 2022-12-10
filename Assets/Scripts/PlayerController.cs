@@ -33,7 +33,10 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-   
+        if (other.TryGetComponent(out IDamageDealer damageDealer))
+        {
+            damageDealer.DealDamage(health);
+        }
     }
 
     private void Die()
