@@ -10,12 +10,14 @@ public class Enemy : MonoBehaviour, IDamageDealer
     private Rigidbody2D rb;
     private Health health;
     private Weapon weapon;
+    private Explosion explosionOnDeath;
     // Start is called before the first frame update
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         health = GetComponent<Health>();
         weapon = GetComponent<Weapon>();
+        explosionOnDeath = gameObject.GetComponentInChildren<Explosion>();
     }
     void Start()
     {
@@ -62,6 +64,9 @@ public class Enemy : MonoBehaviour, IDamageDealer
 
     public void Die()
     {
+        explosionOnDeath.gameObject.SetActive(true);
+        explosionOnDeath.transform.SetParent(null);
+        explosionOnDeath.PlayExplosionAnimaton();
         gameObject.SetActive(false);
     }
 }
