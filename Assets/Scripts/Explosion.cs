@@ -6,7 +6,7 @@ public class Explosion : MonoBehaviour
 {
     private Animator animator;
 
-    private int explodeHash = Animator.StringToHash("Explosion1Anim");
+    private int explodeHash = Animator.StringToHash("ExplosionAnim");
     bool isFinished = false;
     private void Start()
     {
